@@ -1,6 +1,6 @@
+from common import config
 import requests
 import lxml.html as html
-from common import config
 
 class NewsPage:
 

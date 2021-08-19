@@ -1,8 +1,7 @@
 import argparse
-
+from common import config
 from requests.models import HTTPError
 from urllib3.exceptions import MaxRetryError
-from common import config
 import logging
 import re
 from datetime import datetime
@@ -38,7 +37,7 @@ def _news_scraper(news_site_uid):
 
 def _save_articles(news_site_uid, articles):
     now = datetime.now().strftime('%Y_%m_%d')
-    out_file_name = f"output/{news_site_uid}_{now}_articles.csv"
+    out_file_name = f"extract/dirty_data/{news_site_uid}_{now}_articles.csv"
     csv_headers = list(filter(lambda property: not property.startswith('_'), dir(articles[0])))
     with open(out_file_name, "w") as file:
         writer = csv.writer(file)

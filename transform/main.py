@@ -134,6 +134,6 @@ if __name__ == "__main__":
         print("You need to add --list argument to continue. Use -h flag to more information.")
         sys.exit()
     df = main(args.files)
-    save_dataframe(df, name=f"final_datasets/clean_newspapers_articles.csv")
+    save_dataframe(df, name=f"transform/final_datasets/clean_newspapers_articles.csv")
     # print(df["title"][df["body"].str.contains("Vicente Fernández Jr. aseguró que los rumore")])
     #print(np.unique([len(title) for title in df["title"]], return_counts=True))
