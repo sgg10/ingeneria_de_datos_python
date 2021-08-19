@@ -8,6 +8,7 @@ class NewsPage:
         self.__config = config()["news_sites"][news_site_uid]
         self._queries = self.__config["queries"]
         self._html = None
+        self._url = url
 
         self._visit(url)
 
@@ -50,4 +51,8 @@ class ArticlePage(NewsPage):
             return result[0].replace('"', '') if len(result) else ""
         except IndexError:
             return ""
+
+    @property
+    def url(self):
+        return self._url
 
