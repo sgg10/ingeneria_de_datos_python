@@ -1,5 +1,11 @@
 news_sites:
-    eluniversal:
-        url: http://www.eluniversal.com.mx
-    elpais:
-        url: https://elapis.com
+ eluniversal:
+  url: https://www.eluniversal.com.mx
+  queries:
+   homepage_article_links: ".enlace-img a"
+ elpais:
+  url: https://elpais.com
+  queries:
+   homepage_article_links: "//article//a[not(@class)]/@href"
+   article_body: '//article//div[@id="ctn_article_body"]/p/text()'
+   article_title: "//article/header/div/h1/text()"
