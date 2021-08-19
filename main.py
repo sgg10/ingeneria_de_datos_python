@@ -5,6 +5,8 @@ from urllib3.exceptions import MaxRetryError
 from common import config
 import logging
 import re
+from datetime import datetime
+import csv
 
 import news_page_objects as news
 
@@ -31,7 +33,20 @@ def _news_scraper(news_site_uid):
             logger.info("Article fetched!!")
             articles.append(article)
             print(article.title)
-    print(len(articles))
+
+    _save_articles(news_site_uid, articles)
+
+def _save_articles(news_site_uid, articles):
+    now = datetime.now().strftime('%Y_%m_%d')
+    out_file_name = f"output/{news_site_uid}_{now}_articles.csv"
+    csv_headers = list(filter(lambda property: not property.startswith('_'), dir(articles[0])))
+    with open(out_file_name, "w") as file:
+        writer = csv.writer(file)
+        writer.writerow(csv_headers)
+
+        for article in articles:
+            row = [ str(getattr(article, prop)) for prop in csv_headers ]
+            writer.writerow(row)
 
 def _build_link(host, link):
     if IS_WELL_FOR_LINK.match(link):

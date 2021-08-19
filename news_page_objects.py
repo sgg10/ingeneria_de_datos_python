@@ -38,7 +38,6 @@ class ArticlePage(NewsPage):
     @property
     def body(self):
         try:
-            print(self._queries["article_body"])
             result = self._select(self._queries["article_body"])
             return result[0].replace('"', '') if len(result) else ""
         except IndexError:
