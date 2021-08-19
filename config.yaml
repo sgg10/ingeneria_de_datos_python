@@ -1,8 +1,10 @@
 news_sites:
  eluniversal:
-  url: https://www.eluniversal.com.mx
+  url: https://www.eluniversal.com
   queries:
-   homepage_article_links: ".enlace-img a"
+   homepage_article_links: '//a[@class="title"]/@href'
+   article_body: '//div[@class="note-text"]/div[not(@class)]/text()'
+   article_title: '//header//h2[@class="title"]/a/text()'
  elpais:
   url: https://elpais.com
   queries:
